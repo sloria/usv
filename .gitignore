@@ -37,7 +37,7 @@ nosetests.xml
 .ropeproject/
 PySynth-1.0.1/
 Research/
-examples/*
+examples/
 !examples/sqkdata
 !examples/2ch_example/*.[WAV]
 !examples/2ch_example/*.LOG
