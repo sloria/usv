@@ -45,3 +45,9 @@ examples/
 !examples/2ch_example2/*.LOG
 !examples/logs/playback.log
 !examples/logs/reclog.LOG
+
+#Translations
+*.mo
+
+#Mr Developer
+.mr.developer.cfg
