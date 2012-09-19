@@ -6,7 +6,9 @@ Provides tests for evaluating classifiers. Includes k-fold cross validation, fea
 class accuracy, SVM parameter tuning, and learning curve tests.
 
 Usage:
-    cv.py
+    Uncomment tests you want to use, then run:
+    
+    >>> cv.py
 """
 import Orange, orange, orngDisc, orngTest, orngStat, orngFSS
 from Orange.classification.svm import *
@@ -93,7 +95,7 @@ def main():
                  # tree,
                  #treePruned2,
                  # treePruned4,
-                svmRBF,
+                # svmRBF,
                 #svmPoly,
                  # svmLinear,
                  # knn
@@ -121,15 +123,15 @@ def main():
     localTime = time.asctime( time.localtime(time.time()))
     testFile.write(localTime + "\n")
     
-    # cross-validation
-    print "CROSS-VALIDATION"
-    testFile.write("Test: Cross-validation\n")
-    cv = Orange.evaluation.testing.cross_validation(learners, TRAIN_DATA, folds=5)
-    
-    for i in range(len(learners)):
-        accuracyCV = Orange.evaluation.scoring.CA(cv)[i]
-        print "%s %.4f\n" % (learners[i].name, accuracyCV)
-        testFile.write(learners[i].name + "\t" + str(accuracyCV) + "\n")
+    # # cross-validation
+    # print "CROSS-VALIDATION"
+    # testFile.write("Test: Cross-validation\n")
+    # cv = Orange.evaluation.testing.cross_validation(learners, TRAIN_DATA, folds=5)
+    # 
+    # for i in range(len(learners)):
+    #     accuracyCV = Orange.evaluation.scoring.CA(cv)[i]
+    #     print "%s %.4f\n" % (learners[i].name, accuracyCV)
+    #     testFile.write(learners[i].name + "\t" + str(accuracyCV) + "\n")
 
 #    # proportion test
 #    testFile.write("Test: Proportion test\n")
