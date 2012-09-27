@@ -44,6 +44,9 @@ examples/*
 !examples/logs/playback.log
 !examples/logs/reclog.LOG
 
+testresults.tab
+bin/cv.py
+
 #Translations
 *.mo
 
