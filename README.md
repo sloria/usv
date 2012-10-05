@@ -62,6 +62,6 @@ for channel 2.
 
 The output is a .tab file with the classification counts for each file as well as the total classfication counts and proportions. The .tab file can be opened with a plain text editor or a spreadsheet application like Microsoft Excel.
 
-View more options using 'sqk --help'.
+View more options using `sqk --help`.
 
 Full documentation to come...
