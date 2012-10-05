@@ -7,7 +7,7 @@ p_fm = []
 p_hfm = []
 p_sv = []
 
-ppds = [0, 3, 7, 10, 14, 17, 21]
+ppds = [0, 3, 7, 10, 14, 17, 21, 24]
 
 datafiles = glob('ppd*.[tT][aA][bB]')
 datafiles.sort()
@@ -44,7 +44,7 @@ pl.grid(True)
 
 d_ratios = []
 pl.figure()
-x = [3, 7, 10, 14, 17, 21]
+x = [3, 7, 10, 14, 17, 21, 24]
 y = [(fm_sv_ratios[i + 1] - fm_sv_ratios[i]) for i in range(0, len(fm_sv_ratios) -1)]
 pl.title('Delta FM:SV over time (PPD)')
 pl.xlabel('PPD')
