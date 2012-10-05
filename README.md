@@ -29,16 +29,14 @@ OR add the following to ~/.bash_profile:
 
 Adding Training Examples
 ------------------------
-
 You **must** change the TRAIN_PATH variable in sqk.py to the path where *your* traindata.tab file is located.
 
     TRAINPATH = '/path/to/training_data_dir'
 
-Full documentation to come...
+*Full documentation to come...*
 
 Classification
 --------------
-
 First, `cd` to the directory containing the .wav files.
 Then, resample and segment all the audio files in the directory using
 
@@ -64,4 +62,4 @@ The output is a .tab file with the classification counts for each file as well a
 
 View more options using `sqk --help`.
 
-Full documentation to come...
+*Full documentation to come...*
