@@ -16,7 +16,7 @@ Installation
 ------------
 After installing the dependencies, grab and install package:
 
-    git clone ___
+    git clone https://github.com/sloria/usv.git
     python setup.py install
 
 Add usv/bin to your path:
@@ -26,3 +26,40 @@ Add usv/bin to your path:
 OR add the following to ~/.bash_profile:
 
     export PATH=$PATH:~/projects/usv/bin
+
+Adding Training Examples
+------------------------
+You **must** change the TRAIN_PATH variable in sqk.py to the path where *your* traindata.tab file is located.
+
+    TRAINPATH = '/path/to/training_data_dir'
+
+*Full documentation to come...*
+
+Classification
+--------------
+First, `cd` to the directory containing the .wav files.
+Then, resample and segment all the audio files in the directory using
+
+    sqk.py -S
+
+You can also isolate a specified audio channel. For example,
+
+    sqk.py -Sm 2
+
+isolates channel 2 before reampling and segmenting.
+
+Then, while still in the same directory, classify all the files in the folder using
+
+    sqk.py -C
+
+Again, you can specify an audio channel, e.g.,
+
+    sqk.py -Cm 2
+
+for channel 2.
+
+The output is a .tab file with the classification counts for each file as well as the total classfication counts and proportions. The .tab file can be opened with a plain text editor or a spreadsheet application like Microsoft Excel.
+
+View more options using `sqk --help`.
+
+*Full documentation to come...*
