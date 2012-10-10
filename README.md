@@ -1,16 +1,65 @@
 usv
 ===
 
-A python library and tools for analyzing animal vocalization data
+A Python library and tools for classifying animal ultrasonic vocalizations using supervised machine learning. Developed for use with recordings from [Avisoft-Recorder](http://www.avisoft.com/recorder.htm) but is compatible with recordings from any software that records to WAV.
 
--About Sqk
+Integrates a number of 3rd-party libraries, including Orange for machine learning, Yaafe for feature extraction, and SoX for segmentation.
 
-Sqk is a Mac OS X command-line utility for automatic classification of ultrasonic vocalizations (USVs) written in Python. It integrates feature extraction (using the YAAFE feature extraction toolbox), supervised learning algorithms (using the Orange library [2]), and data analysis. It can also be used to resample ultrasonic vocalization such that they can be heard by a human.
+Requirements
+------------
+* Python >= 2.7
+* [Orange](http://orange.biolab.si/)
+* [Yaafe](http://yaafe.sourceforge.net/)
+* [SoX](http://sox.sourceforge.net/Main/HomePage) (included in bin/)
 
-Even though Sqk was originally created for classification of mouse USVs, it aims to provide a simple and versatile solution to supervised learning problems in any animal model. It includes options for different classification algorithms, including naive bayes, k-nearest neighbors, classification trees, and support vector machines.
+Installation
+------------
+After installing the dependencies, grab and install package:
 
-Sqk is still in development. Future versions will include tools for statistical analysis.
+    git clone https://github.com/sloria/usv.git
+    python setup.py install
 
-[1] YAAFE, an Easy to Use and Efficient Audio Feature Extraction Software, B.Mathieu, S.Essid, T.Fillon, J.Prado, G.Richard, proceedings of the 11th ISMIR conference, Utrecht, Netherlands, 2010.
+Add usv/bin to your path:
 
-[2] Toma? Curk, Janez Dem?ar, Qikai Xu, Gregor Leban, Uro? Petrovi?, Ivan Bratko, Gad Shaulsky, Bla? Zupan. Microarray data mining with visual programming. Bioinformatics. 2005 Feb 1;21(3):396-8.
+    export PATH=$PATH:$PWD/usv/bin
+
+OR add the following to ~/.bash_profile:
+
+    export PATH=$PATH:~/projects/usv/bin
+
+Adding Training Examples
+------------------------
+You **must** change the TRAIN_PATH variable in sqk.py to the path where *your* traindata.tab file is located.
+
+    TRAINPATH = '/path/to/training_data_dir'
+
+*Full documentation to come...*
+
+Classification
+--------------
+First, `cd` to the directory containing the .wav files.
+Then, resample and segment all the audio files in the directory using
+
+    sqk.py -S
+
+You can also isolate a specified audio channel. For example,
+
+    sqk.py -Sm 2
+
+isolates channel 2 before reampling and segmenting.
+
+Then, while still in the same directory, classify all the files in the folder using
+
+    sqk.py -C
+
+Again, you can specify an audio channel, e.g.,
+
+    sqk.py -Cm 2
+
+for channel 2.
+
+The output is a .tab file with the classification counts for each file as well as the total classfication counts and proportions. The .tab file can be opened with a plain text editor or a spreadsheet application like Microsoft Excel.
+
+View more options using `sqk --help`.
+
+*Full documentation to come...*
