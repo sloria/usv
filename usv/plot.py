@@ -93,7 +93,7 @@ class Plotter(object):
         p1 = pl.bar(x_pos, self.n_fm, bar_width, color='r', label='n FM')
         p2 = pl.bar(x_pos, self.n_hfm, bar_width, color='g', label='n HFM', bottom=self.n_fm)
         p3 = pl.bar(x_pos, self.n_sv, bar_width, color='b', label='n SV', bottom=(self.n_fm + self.n_hfm))
-        pl.title('Counts of each call type over time (PPD)')
+        pl.title('Counts of each call type over time')
         pl.ylabel('Count')
         pl.xlabel('PPD')
         pl.xticks(x_pos + bar_width/2., self.x_axis)
@@ -103,7 +103,7 @@ class Plotter(object):
 
     def freqs(self):
         pl.figure()
-        pl.title('Call type frequencies over time (PPD)')
+        pl.title('Call type frequencies over time')
         pl.xlabel('PPD')
         pl.ylabel('p')
         pl.plot(self.x_axis, self.p_fm, 'ro-', label='p(FM)')
