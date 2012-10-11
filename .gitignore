@@ -45,7 +45,6 @@ examples/*
 !examples/logs/reclog.LOG
 
 testresults.tab
-bin/cv.py
 
 #Translations
 *.mo
