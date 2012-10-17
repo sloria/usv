@@ -9,15 +9,21 @@ def main():
     plots = all_plots()
     plots['full'].counts()
     pl.title('Counts for each call type over time (full trial)')
+    plot_bar(20.5, 889, 259, 332, 1.0)
+    plot_bar(22, 25, 14, 97, 1.0)
     pl.savefig('/Users/sloria1/Desktop/count-full.png')
     
-    # plots['first15'].counts()
-    # pl.title('Counts folder each call type over time (first 15 min)')
-    # pl.savefig('/Users/sloria1/Desktop/count-15.png')
+    plots['first15'].counts()
+    pl.title('Counts folder each call type over time (first 15 min)')
+    plot_bar(20.5, 472, 134, 180, 1.0)
+    plot_bar(22, 16, 6, 86, 1.0)
+    pl.savefig('/Users/sloria1/Desktop/count-15.png')
     
-    # plots['first5'].counts()
-    # pl.title('Counts for each call type over time (first 5 min)')
-    # pl.savefig('/Users/sloria1/Desktop/count-5.png')
+    plots['first5'].counts()
+    pl.title('Counts for each call type over time (first 5 min)')
+    plot_bar(20.5, 162, 54, 73, 1.0)
+    plot_bar(22, 7, 2, 4, 1.0)
+    pl.savefig('/Users/sloria1/Desktop/count-5.png')
     
     # plots['full'].freqs()
     # pl.title('Frequencies for each call type over time (full trial)')
@@ -70,6 +76,15 @@ def draw_arrows2():
     pl.arrow(switch2[0], switch2[1], 0.0, -0.08, 
         fc="k", ec="k", head_width=0.7, head_length=0.05)
 
+def plot_bar(x_pos, n_fm, n_hfm, n_sv, bar_width):
+    p1 = pl.bar([x_pos], [n_fm], bar_width, color='r', label='n FM')
+    p2 = pl.bar([x_pos], [n_hfm], bar_width, color='g', label='n HFM', bottom=n_fm)
+    p3 = pl.bar([x_pos], [n_sv], bar_width, color='b', label='n SV', bottom=(n_fm + n_hfm))
+
+def plot_ppd21_bars():
+    plot_bar(20.5, 889, 259, 332, 1.0)
+    plot_bar(22, 25, 14, 97, 1.0)
+
 class Plotter(object):
     def __init__(self, folder):
         n_fm_list = []
@@ -94,7 +109,7 @@ class Plotter(object):
                 p_fm_list.append(float(freq_tokens[2]))
                 p_hfm_list.append(float(freq_tokens[3]))
                 p_sv_list.append(float(freq_tokens[4]))
-        self.x_axis = [0, 3, 7, 10, 14, 17, 21, 24, 28] # PPDs
+        self.x_axis = [0, 3, 7, 10, 14, 17, 24, 28] # PPDs
         self.n_fm = np.array(n_fm_list)
         self.n_hfm = np.array(n_hfm_list)
         self.n_sv = np.array(n_sv_list)
@@ -104,14 +119,17 @@ class Plotter(object):
         
     def counts(self):
         pl.figure()
-        bar_width = 0.65
-        x_pos = np.arange(len(self.x_axis))
+        bar_width = 2.0
+        x_pos = np.array(self.x_axis)
         p1 = pl.bar(x_pos, self.n_fm, bar_width, color='r', label='n FM')
         p2 = pl.bar(x_pos, self.n_hfm, bar_width, color='g', label='n HFM', bottom=self.n_fm)
         p3 = pl.bar(x_pos, self.n_sv, bar_width, color='b', label='n SV', bottom=(self.n_fm + self.n_hfm))
         pl.title('Counts of each call type over time')
         pl.ylabel('Count')
         pl.xlabel('PPD')
+        self.x_axis.append(21)
+        self.x_axis.sort()
+        x_pos = np.array(self.x_axis)
         pl.xticks(x_pos + bar_width/2., self.x_axis)
         pl.legend()
         print "Opening bar plot..."

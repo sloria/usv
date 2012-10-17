@@ -1,0 +1,20 @@
+# data = ppd21A_first5_ch1.tab
+# channel = 1
+# sample_rate = 11025
+# classifier = SVM
+FILE	BGNOISE	FM	HFM	SV	
+T0000000_ch1	10	1	0	0	
+T0000001_ch1	4	0	1	0	
+T0000002_ch1	1	0	1	0	
+T0000003_ch1	4	1	0	0	
+T0000004_ch1	1	0	0	1	
+T0000005_ch1	2	1	0	0	
+T0000006_ch1	6	2	0	0	
+T0000007_ch1	0	0	0	2	
+T0000008_ch1	0	0	0	1	
+T0000009_ch1	2	0	0	0	
+T0000010_ch1	1	0	0	0	
+T0000011_ch1	1	0	0	0	
+T0000012_ch1	4	2	0	0	
+TOTAL		7	2	4	
+P		0.5385	0.1538	0.3077	
