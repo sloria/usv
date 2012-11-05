@@ -19,7 +19,9 @@ import sys
 
 # Path where the examplars are located
 EXAMPLE_PATH = "/Users/sloria1/Dropbox/TRAINING_EXAMPLES/"
-TRAIN_DATA = "/Users/sloria1/projects/usv/trainsets/traindata.tab"
+# File path to save training data to
+TRAIN_DATA = "/Users/sloria1/projects/usv/trainsets/traindata_with_bark.tab"
+# Base command
 COMMAND = "sqk.py"
 
 if not os.path.exists(EXAMPLE_PATH):
@@ -30,8 +32,9 @@ if not os.path.exists(EXAMPLE_PATH):
 train_HFM = COMMAND + " -p " + EXAMPLE_PATH + "HFM -t hfm -d " + TRAIN_DATA
 train_FM = COMMAND + " -p " + EXAMPLE_PATH + "FM -t fm -d " + TRAIN_DATA
 train_SV = COMMAND + " -p " + EXAMPLE_PATH + "SV -t sv -d " + TRAIN_DATA
+train_BARK = COMMAND + " -p " + EXAMPLE_PATH + "BARK -t bark -d " + TRAIN_DATA
 train_BG = COMMAND + " -p " + EXAMPLE_PATH + "BGNOISE -t bgnoise -d " + TRAIN_DATA
-commands = [train_HFM, train_FM, train_SV, train_BG]
+commands = [train_HFM, train_FM, train_SV, train_BARK, train_BG]
 
 def run_commands(commands):
     for cmd in commands:

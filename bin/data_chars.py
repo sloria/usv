@@ -10,7 +10,7 @@ import sys
 from orange import *
 
 # Name of the training data file
-TRAIN_DATA = "/Users/sloria1/projects/usv/trainsets/traindata.tab"
+TRAIN_DATA = "/Users/sloria1/projects/usv/trainsets/traindata_with_bark.tab"
 
 
 def main():

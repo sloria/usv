@@ -18,7 +18,7 @@ import time
 from Orange.ensemble import *
 
 def main():
-    TRAIN_DATA = orange.ExampleTable("/Users/sloria1/projects/usv/trainsets/traindata.tab")
+    TRAIN_DATA = orange.ExampleTable("/Users/sloria1/projects/usv/trainsets/traindata_with_bark.tab")
     TEST_RESULTS = "/Users/sloria1/projects/usv/testresults.tab"
     testFile = open(TEST_RESULTS, "a+")
 
@@ -79,8 +79,8 @@ def main():
     ############  TUNE SVM  ############
     ####################################
         
-    # svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["C", "gamma"], verbose=True)
-    # svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["nu"], verbose=True)
+    svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["C", "gamma"], verbose=True)
+    svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["nu"], verbose=True)
     
     ####################################
     ############  TEST FSS  ############
@@ -95,7 +95,7 @@ def main():
                  # tree,
                  #treePruned2,
                  # treePruned4,
-                # svmRBF,
+                svmRBF,
                 #svmPoly,
                  # svmLinear,
                  # knn
@@ -123,11 +123,18 @@ def main():
     localTime = time.asctime( time.localtime(time.time()))
     testFile.write(localTime + "\n")
     
-    # # cross-validation
+    # test accuracy of the classifiers on each class
+    # print "CLASS ACCURACY"
+    # for learner in learners:
+    #     print learner.name
+    #     testClassAccuracies(TRAIN_DATA, learner, k=5)
+    #     print "\n"
+    
+    # cross-validation
     # print "CROSS-VALIDATION"
     # testFile.write("Test: Cross-validation\n")
     # cv = Orange.evaluation.testing.cross_validation(learners, TRAIN_DATA, folds=5)
-    # 
+    
     # for i in range(len(learners)):
     #     accuracyCV = Orange.evaluation.scoring.CA(cv)[i]
     #     print "%s %.4f\n" % (learners[i].name, accuracyCV)
@@ -144,12 +151,6 @@ def main():
 #        print "%s %.4f\n" % (learners[i].name, accuracyPT)
 #        testFile.write(learners[i].name + "\t" + str(accuracyPT) + "\n")
 #
-#    # test class accuracy
-#    print "CLASS ACCURACY"
-#    for learner in learners:
-#        print learner.name
-#        testClassAccuracies(TRAIN_DATA, learner, k=5)
-#        print "\n"
 
     # learning curve
     # print "LEARNING CURVE"

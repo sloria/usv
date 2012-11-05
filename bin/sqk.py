@@ -23,6 +23,7 @@ import usv.avisoftlog
 
 # Directory where traindata should be written
 TRAIN_PATH = '/Users/sloria1/projects/usv/trainsets'
+DEFAULT_TRAINSET = 'traindata_with_bark'
 
 def main():
     version = "%prog version 0.1"
@@ -54,7 +55,7 @@ from one channel of the trial (ch 1 in this case), type: \
     parser.add_option("-T", "--traindata", metavar="<DATA_FILE>",
                     dest="trainData",
                     action="store",
-                    default=os.path.join(TRAIN_PATH, 'traindata'),
+                    default=os.path.join(TRAIN_PATH, DEFAULT_TRAINSET),
                     help="Specify training data set. Default is %default")
     parser.add_option("-L", "--learner", metavar="<TYPE>",
                     dest="learner",
