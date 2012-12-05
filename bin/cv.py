@@ -29,8 +29,8 @@ def main():
     treePruned4 = orngTree.TreeLearner(name="Classification Tree Pruned (4)", mForPruning=4)
     svm_easy = SVMLearnerEasy(name="SVM (easy)")
 
-    c = 128
-    g = 2
+    c = 2
+    g = 0.5
     n = 0.1
     svmRBF = SVMLearner(name="SVM (RBF)", 
                         kernel_type=kernels.RBF, C=c, gamma=g, nu=n)
@@ -79,8 +79,8 @@ def main():
     ############  TUNE SVM  ############
     ####################################
         
-    svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["C", "gamma"], verbose=True)
-    svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["nu"], verbose=True)
+    # svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["C", "gamma"], verbose=True)
+    # svmRBF.tune_parameters(TRAIN_DATA, folds=5, parameters=["nu"], verbose=True)
     
     ####################################
     ############  TEST FSS  ############
@@ -131,14 +131,14 @@ def main():
     #     print "\n"
     
     # cross-validation
-    # print "CROSS-VALIDATION"
-    # testFile.write("Test: Cross-validation\n")
-    # cv = Orange.evaluation.testing.cross_validation(learners, TRAIN_DATA, folds=5)
+    print "CROSS-VALIDATION"
+    testFile.write("Test: Cross-validation\n")
+    cv = Orange.evaluation.testing.cross_validation(learners, TRAIN_DATA, folds=5)
     
-    # for i in range(len(learners)):
-    #     accuracyCV = Orange.evaluation.scoring.CA(cv)[i]
-    #     print "%s %.4f\n" % (learners[i].name, accuracyCV)
-    #     testFile.write(learners[i].name + "\t" + str(accuracyCV) + "\n")
+    for i in range(len(learners)):
+        accuracyCV = Orange.evaluation.scoring.CA(cv)[i]
+        print "%s %.4f\n" % (learners[i].name, accuracyCV)
+        testFile.write(learners[i].name + "\t" + str(accuracyCV) + "\n")
 
 #    # proportion test
 #    testFile.write("Test: Proportion test\n")

@@ -240,7 +240,7 @@ from one channel of the trial (ch 1 in this case), type: \
             classifier.name = "kNN"
         elif opts.learner.lower() == "svm":
             svm = SVMLearner(name="SVM", kernel_type=kernels.RBF,
-                            C=128, gamma=2, nu=0.1)
+                            C=2, gamma=0.5, nu=0.1)
             classifier = svm(traindata)
             classifier.name = "SVM"
         elif opts.learner.lower() == "tree":
@@ -338,21 +338,21 @@ from one channel of the trial (ch 1 in this case), type: \
                         log.close()
                     summary.write('\n')
         # Write totals. Exclude BGNOISE.
-        summary.write("TOTAL" + "\t\t")
-        for i in range(1, len(totals)):
+        summary.write("TOTAL" + "\t")
+        for i in range(len(totals)):
             summary.write(str(totals[i]) + "\t")
         if opts.log:
             summary.write("end: " + str(log.end.time) + "\t")
         summary.write("\n")
         # Write proportions. Exclude BGNOISE.
-        summary.write("P" + "\t\t")
-        for i in range(1, len(proportions)):
+        summary.write("P" + "\t")
+        for i in range(len(proportions)):
             proportions[i] = float(totals[i]) / float(sum(totals) - totals[0])
             summary.write("%.4f\t" % (proportions[i]))
         summary.write("\n")
         summary.close()
         # Open data file when finished
-        subprocess.call('open %s' % (datasummary_name), shell=True)
+        # subprocess.call('open %s' % (datasummary_name), shell=True)
 
     else:
         data.write("\n")
