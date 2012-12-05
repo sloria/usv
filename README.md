@@ -25,7 +25,7 @@ Add usv/bin to your path:
 
 OR add the following to ~/.bash_profile:
 
-    export PATH=$PATH:~/projects/usv/bin
+    export PATH=$PATH:~/path/to/usv/bin
 
 Adding Training Examples
 ------------------------
