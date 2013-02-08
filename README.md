@@ -17,6 +17,7 @@ Installation
 After installing the dependencies, grab and install package:
 
     git clone https://github.com/sloria/usv.git
+    cd usv/
     python setup.py install
 
 Add usv/bin to your path:
@@ -25,7 +26,7 @@ Add usv/bin to your path:
 
 OR add the following to ~/.bash_profile:
 
-    export PATH=$PATH:~/projects/usv/bin
+    export PATH=$PATH:~/path/to/usv/bin
 
 Adding Training Examples
 ------------------------
