@@ -22,7 +22,7 @@ import scipy.stats as spstats
 import usv.avisoftlog
 
 # Directory where traindata should be written
-TRAIN_PATH = '/Users/sloria1/projects/usv/trainsets'
+TRAIN_PATH = '/Users/sloria1/projects/python-projects/usv/trainsets'
 
 def main():
     version = "%prog version 0.1"
@@ -346,7 +346,10 @@ from one channel of the trial (ch 1 in this case), type: \
         # Write proportions. Exclude BGNOISE.
         summary.write("P" + "\t\t")
         for i in range(1, len(proportions)):
-            proportions[i] = float(totals[i]) / float(sum(totals) - totals[0])
+            try:
+                proportions[i] = float(totals[i]) / float(sum(totals) - totals[0])
+            except ZeroDivisionError:
+                proportions[i] = 0.0
             summary.write("%.4f\t" % (proportions[i]))
         summary.write("\n")
         summary.close()
