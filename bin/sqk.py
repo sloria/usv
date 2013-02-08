@@ -13,7 +13,6 @@ import datetime
 import fnmatch
 import subprocess
 from glob import glob
-import shutil # temporary
 
 import yaafelib as yf
 import orange, Orange, orngTree
@@ -133,15 +132,15 @@ from one channel of the trial (ch 1 in this case), type: \
         elif opts.segment:
             print "Resampling and segmenting %s. . ." % (opts.audio)
             if opts.channel == 0:
-                runCommands(seg_resamp(opts.audio, int(opts.sampleRate),
+                run_commands(seg_resamp(opts.audio, int(opts.sampleRate),
                             outfile=file_name + '_call.wav', directory=file_name + "_ch1_2",
                             ch1=True, ch2=True))
             elif opts.channel == 1:
-                runCommands(seg_resamp(opts.audio, int(opts.sampleRate),
+                run_commands(seg_resamp(opts.audio, int(opts.sampleRate),
                             outfile=file_name + '_ch1_.wav', directory=file_name + "_ch1",
                             ch1=True, ch2=False))
             elif opts.channel == 2:
-                runCommands(seg_resamp(opts.audio, int(opts.sampleRate),
+                run_commands(seg_resamp(opts.audio, int(opts.sampleRate),
                             outfile=file_name + '_ch2_.wav', directory=file_name + "_ch2",
                             ch1=False, ch2=True))
             print "Wrote to './%s'." % (file_name + "_calls")
@@ -174,19 +173,19 @@ from one channel of the trial (ch 1 in this case), type: \
                         elif opts.segment:
                             print "Resampling and segmenting %r. . ." % (audiofile)
                             if opts.channel == 0:
-                                runCommands(seg_resamp(audiofile,
+                                run_commands(seg_resamp(audiofile,
                                         int(opts.sampleRate),
                                         outfile=os.path.basename(file_name) + '_call.wav',
                                         directory=os.path.basename(file_name) + "_ch1_2",
                                         ch1=True, ch2=True))
                             elif opts.channel == 1:
-                                runCommands(seg_resamp(audiofile,
+                                run_commands(seg_resamp(audiofile,
                                         int(opts.sampleRate),
                                         outfile=os.path.basename(file_name) + '_ch1_.wav',
                                         directory=os.path.basename(file_name) + "_ch1",
                                         ch1=True, ch2=False))
                             elif opts.channel == 2:
-                                runCommands(seg_resamp(audiofile,
+                                run_commands(seg_resamp(audiofile,
                                         int(opts.sampleRate),
                                         outfile=os.path.basename(file_name) + '_ch2_.wav',
                                         directory=os.path.basename(file_name) + "_ch2",
@@ -201,15 +200,15 @@ from one channel of the trial (ch 1 in this case), type: \
             file_name, ext = os.path.splitext(audiofile)
             print "Resampling and segmenting %r. . ." % (file_name)
             if opts.channel == 0:
-                runCommands(seg_resamp(audiofile, int(opts.sampleRate),
+                run_commands(seg_resamp(audiofile, int(opts.sampleRate),
                             outfile=file_name + '_call.wav', directory=file_name + "_ch1_2",
                             ch1=True, ch2=True))
             elif opts.channel == 1:
-                runCommands(seg_resamp(audiofile, int(opts.sampleRate),
+                run_commands(seg_resamp(audiofile, int(opts.sampleRate),
                             outfile=file_name + '_ch1_.wav', directory=file_name + "_ch1",
                             ch1=True, ch2=False))
             elif opts.channel == 2:
-                runCommands(seg_resamp(audiofile, int(opts.sampleRate),
+                run_commands(seg_resamp(audiofile, int(opts.sampleRate),
                             outfile=file_name + '_ch2_.wav', directory=file_name + "_ch2",
                             ch1=False, ch2=True))
     # Else if user chooses to classify the trial
@@ -508,7 +507,7 @@ def seg_resamp(audiofile, resamp_rate, outfile, directory, ch1=True, ch2=True):
     return [resample, segment, clean]
 
 
-def runCommands(commands):
+def run_commands(commands):
     """Run all commands in a list of commands."""
     for cmd in commands:
         subprocess.call(cmd, shell=True)
