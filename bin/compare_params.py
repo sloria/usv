@@ -36,7 +36,7 @@ def main():
         y_list1.append(meanb)
     x_axis1 = np.array(x_list1)
     y_axis1 = np.array(y_list1)
-    pl.plot(x_axis1, y_axis1, 'ro', label='Barks')
+    pl.plot(x_axis1, y_axis1, 'ro', label='Bark')
 
     # Plot folder2 data
     x_list2 = []
@@ -50,10 +50,11 @@ def main():
         y_list2.append(meanb)
     x_axis2 = np.array(x_list2)
     y_axis2 = np.array(y_list2)
-    pl.plot(x_axis2, y_axis2, 'bo', label='Croons')
+    pl.plot(x_axis2, y_axis2, 'bo', label='SV')
 
     pl.legend(loc='lower right')
-    pl.show()
+    pl.savefig('/Users/sloria1/Desktop/bark-sv-2-feature-comparison.pdf', bbox_inches=0)
+    # pl.show()
 
 
 def extract(audiofile, feature_definition, sample_rate=11025):
