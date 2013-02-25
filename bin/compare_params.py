@@ -21,8 +21,13 @@ def main():
     audiofiles2 = glob(os.path.join(folder2, '*.[wW][aA][vV]'))
     pl.figure()
     # pl.title('Barks vs. Croons')
-    pl.xlabel('Perceptual Sharpness')
-    pl.ylabel('ZCR')
+    font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 25}
+
+    pl.rc('font', **font)
+    pl.xlabel('Perceptual Sharpness (acum)')
+    pl.ylabel('ZCR (Hz)')
     
     # Plot folder1 data
     x_list1 = []
@@ -53,7 +58,7 @@ def main():
     pl.plot(x_axis2, y_axis2, 'bo', label='SV')
 
     pl.legend(loc='lower right')
-    pl.savefig('/Users/sloria1/Desktop/bark-sv-2-feature-comparison.pdf', bbox_inches=0)
+    pl.savefig('/Users/sloria1/Desktop/bark-sv-2-feature-comparison.pdf', bbox_inches='tight')
     # pl.show()
 
 
