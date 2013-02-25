@@ -13,12 +13,20 @@ import datetime
 import fnmatch
 import subprocess
 from glob import glob
+from ConfigParser import SafeConfigParser
 
 import yaafelib as yf
 import orange, Orange, orngTree
 from Orange.classification.svm import SVMLearner, kernels
 import scipy.stats as spstats
 import usv.avisoftlog
+
+# check that settings file exists
+try:
+    with open('settings.txt') as f: pass
+except IOError as e:
+    print "No settings file found. Copy 'settings-dist.txt' to 'settings.txt'"\
+    " and change the appropriate settings. "
 
 # Directory where traindata should be written
 TRAIN_PATH = '/Users/sloria1/projects/python-projects/usv/trainsets'

@@ -1,0 +1,2 @@
+[training]
+train_path = /Users/johndoe/projects/usv/trainsets
