@@ -20,13 +20,13 @@ After installing the dependencies, grab and install package:
     cd usv/
     python setup.py install
 
-Add usv/bin to your path:
+Add usv/scripts to your path:
 
-    export PATH=$PATH:$PWD/usv/bin
+    export PATH=$PATH:$PWD/usv/scripts
 
 OR add the following to ~/.bash_profile:
 
-    export PATH=$PATH:~/path/to/usv/bin
+    export PATH=$PATH:~/path/to/usv/scripts
 
 Adding Training Examples
 ------------------------
