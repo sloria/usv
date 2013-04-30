@@ -20,19 +20,26 @@ After installing the dependencies, grab and install package:
     cd usv/
     python setup.py install
 
-Add usv/bin to your path:
+Add usv/scripts to your path:
 
-    export PATH=$PATH:$PWD/usv/bin
+    export PATH=$PATH:$PWD/usv/scripts
 
 OR add the following to ~/.bash_profile:
 
-    export PATH=$PATH:~/path/to/usv/bin
+    export PATH=$PATH:~/path/to/usv/scripts
 
-Adding Training Examples
+Configure settings (IMPORTANT)
 ------------------------
-You **must** change the TRAIN_PATH variable in sqk.py to the path where *your* traindata.tab file is located.
+Copy the `settings-dist.txt` file to `settings.txt` (which won't be added to version control).
 
-    TRAINPATH = '/path/to/training_data_dir'
+    cp settings-dist.txt settings.txt
+
+Edit the following settings in `settings.txt`:
+
+* train\_src: The absolute path includes the training data files
+    * Example: /Users/johndoe/mouse_calls
+* train\_dest: Directory where training data sets will be saved to.
+    * Example: /Users/johndoe/usv/trainsets
 
 *Full documentation to come...*
 

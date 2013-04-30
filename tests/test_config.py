@@ -10,5 +10,7 @@ class ConfigTest(TestCase):
         self.config.read('./tests/config_example.txt')
 
     def test_can_get_setting(self):
-        assert_equal(self.config.get('training', 'train_path'),
+        assert_equal(self.config.get('training', 'train_src'),
                     '/Users/johndoe/projects/usv/trainsets')
+        assert_equal(self.config.get('training', 'train_dest'),
+                    '~/traindata')

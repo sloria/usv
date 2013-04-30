@@ -1,2 +1,3 @@
 [training]
-train_path = /Users/johndoe/projects/usv/trainsets
+train_src = /path/to/audio/files
+train_dest = /Users/johndoe/usv/trainsets

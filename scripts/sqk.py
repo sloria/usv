@@ -21,15 +21,23 @@ from Orange.classification.svm import SVMLearner, kernels
 import scipy.stats as spstats
 import usv.avisoftlog
 
+
 # check that settings file exists
 try:
-    with open('settings.txt') as f: pass
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    settings_path = os.path.join(file_path, '..', 'settings.txt')
+    with open(settings_path) as f: pass
 except IOError as e:
-    print "No settings file found. Copy 'settings-dist.txt' to 'settings.txt'"\
+    print "ERROR: No settings file found. Copy 'settings-dist.txt' to 'settings.txt'"\
     " and change the appropriate settings. "
+    sys.exit(1)
+
+# Parse settings file
+config = SafeConfigParser()
+config.read(settings_path)
 
 # Directory where traindata should be written
-TRAIN_PATH = '/Users/sloria1/projects/python-projects/usv/trainsets'
+TRAIN_PATH = config.get('training', 'train_dest')
 
 def main():
     version = "%prog version 0.1"
@@ -111,7 +119,7 @@ from one channel of the trial (ch 1 in this case), type: \
     if opts.log and not opts.classify:
         parser.error("'--log' option requires '--classify' option'")
         
-    # Open data file or create it if it doesn't exist.
+    # Open train data file or create it if it doesn't exist.
     if opts.exampleClass and opts.data == "data.tab":
         opts.data = os.path.join(TRAIN_PATH, 'traindata.tab')
 
@@ -311,7 +319,10 @@ from one channel of the trial (ch 1 in this case), type: \
                     data.write(str(os.path.basename(c)) + '\t')
                     data.write(str(classification))
                     data.write('\n')
-            data.close()
+            try:
+                data.close()
+            except UnboundLocalError:
+                parser.error('No directories in this folder. Did you remember to segment the files?')
 
             # Write class count data to summary table
             for dir in dirs:
